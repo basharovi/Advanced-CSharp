@@ -15,5 +15,21 @@ namespace Reflection.Categories
 
             return category;
         }
+
+        public void GetMethods(string categoryName)
+        {
+            var assembly = Assembly.GetExecutingAssembly().GetName();
+            var userSelection = Type.GetType(assembly.Name + ".Categories." + categoryName);
+
+            var methods = userSelection?.GetMethods();
+        }
+
+        public void GetProperty(string categoryName, string propertyName)
+        {
+            var assembly = Assembly.GetExecutingAssembly().GetName();
+            var userSelection = Type.GetType(assembly.Name + ".Categories." + categoryName);
+
+            var propertyInfo = userSelection?.GetProperty(propertyName);
+        }
     }
 }

@@ -25,6 +25,10 @@ namespace Reflection
             
             var category = new CategoryFactory().CreteCategory(userInput);
             category?.PrintMe();
+
+            new CategoryFactory().GetMethods(userInput);
+
+            new CategoryFactory().GetProperty(userInput, "ManufacturedDate");
         }
     }
 }
