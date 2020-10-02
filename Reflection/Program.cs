@@ -21,12 +21,9 @@ namespace Reflection
                 Console.WriteLine("  {0} ", type.Name);
             }
 
-            var input = "Reflection.Categories." + Console.ReadLine();
-            var userSelection = Type.GetType(input);
-
-            var constructorInfo = userSelection?.GetConstructor(new Type[]{ });
-            var category = (ICategory)constructorInfo?.Invoke(new object[] { });
-
+            var userInput =  Console.ReadLine();
+            
+            var category = new CategoryFactory().CreteCategory(userInput);
             category?.PrintMe();
         }
     }
