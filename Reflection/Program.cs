@@ -4,7 +4,7 @@ using Reflection.Categories;
 
 namespace Reflection
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -28,7 +28,8 @@ namespace Reflection
 
             new CategoryFactory().GetMethods(userInput);
 
-            new CategoryFactory().GetProperty(userInput, "ManufacturedDate");
+            var manufacturedDate = new CategoryFactory().GetProperty(userInput, "ManufacturedDate");
+            Console.WriteLine("ManufacturedDate : {0}", manufacturedDate);
         }
     }
 }

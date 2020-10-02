@@ -24,12 +24,15 @@ namespace Reflection.Categories
             var methods = userSelection?.GetMethods();
         }
 
-        public void GetProperty(string categoryName, string propertyName)
+        public object GetProperty(string categoryName, string propertyName)
         {
             var assembly = Assembly.GetExecutingAssembly().GetName();
             var userSelection = Type.GetType(assembly.Name + ".Categories." + categoryName);
-
             var propertyInfo = userSelection?.GetProperty(propertyName);
+
+            var category = CreteCategory(categoryName);
+
+            return propertyInfo?.GetValue(category, null);
         }
     }
 }
