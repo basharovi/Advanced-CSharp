@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace Reflection
 {
@@ -6,7 +7,13 @@ namespace Reflection
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var types = Assembly.GetExecutingAssembly().GetTypes();
+
+            foreach (var type in types)
+            {
+                Console.WriteLine("Class Name = {0} ", type.Name);
+            }
+            
         }
     }
 }
