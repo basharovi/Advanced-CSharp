@@ -1,6 +1,6 @@
 ﻿namespace Reflection.Categories
 {
-    public class Laptop
+    public class Laptop : ICategory
     {
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Reflection.Categories
 {
-    public class Battery
+    public class Battery : ICategory
     {
 
     }

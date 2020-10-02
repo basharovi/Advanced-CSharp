@@ -11,7 +11,11 @@ namespace Reflection
 
             foreach (var type in types)
             {
-                Console.WriteLine("Class Name = {0} ", type.Name);
+                var iCategory = type.GetInterface("ICategory");
+                if(iCategory is null)
+                    continue;
+
+                Console.WriteLine(" {0} ", type.Name);
             }
             
         }
