@@ -2,6 +2,6 @@
 {
     public interface ICategory
     {
-
+        void PrintMe();
     }
 }
