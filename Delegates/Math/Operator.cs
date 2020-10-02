@@ -1,11 +1,7 @@
-﻿using System;
-
-namespace Delegates.Calculator
+﻿namespace Delegates.Math
 {
-    public static class Math 
+    public static class Operator
     {
-        public delegate int Calculator(int firstNumber, int secondNumber);
-
         public static int Sum(int firstNumber, int secondNumber)
         {
             return firstNumber + secondNumber;
