@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace Reflection.Categories
@@ -8,26 +9,31 @@ namespace Reflection.Categories
         public ICategory CreteCategory(string categoryName)
         {
             var assembly = Assembly.GetExecutingAssembly().GetName();
-            var userSelection = Type.GetType(assembly.Name + ".Categories." + categoryName);
+            var concatName = assembly.Name + ".Categories." + categoryName;
+            var userSelection = Type.GetType(concatName);
 
-            var constructorInfo = userSelection?.GetConstructor(new Type[] { });
-            var category = (ICategory)constructorInfo?.Invoke(new object[] { });
+            var constructorInfo = userSelection?.GetConstructor(Array.Empty<Type>());
+            var category = (ICategory)constructorInfo?.Invoke(Array.Empty<object>());
 
             return category;
         }
 
-        public void GetMethods(string categoryName)
+        public object GetMethods(string categoryName)
         {
             var assembly = Assembly.GetExecutingAssembly().GetName();
-            var userSelection = Type.GetType(assembly.Name + ".Categories." + categoryName);
+            var concatName = assembly.Name + ".Categories." + categoryName;
+            var userSelection = Type.GetType(concatName);
 
             var methods = userSelection?.GetMethods();
+
+            return methods;
         }
 
         public object GetProperty(string categoryName, string propertyName)
         {
             var assembly = Assembly.GetExecutingAssembly().GetName();
-            var userSelection = Type.GetType(assembly.Name + ".Categories." + categoryName);
+            var concatName = assembly.Name + ".Categories." + categoryName;
+            var userSelection = Type.GetType(concatName);
             var propertyInfo = userSelection?.GetProperty(propertyName);
 
             var category = CreteCategory(categoryName);
