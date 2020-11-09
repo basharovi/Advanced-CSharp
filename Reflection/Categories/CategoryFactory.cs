@@ -8,10 +8,7 @@ namespace Reflection.Categories
     {
         public ICategory CreteCategory(string categoryName)
         {
-            var assembly = Assembly.GetExecutingAssembly().GetName();
-            var concatName = assembly.Name + ".Categories." + categoryName;
-            var userSelection = Type.GetType(concatName);
-
+            var userSelection = GetCategoryType(categoryName);
             var constructorInfo = userSelection?.GetConstructor(Array.Empty<Type>());
             var category = (ICategory)constructorInfo?.Invoke(Array.Empty<object>());
 
@@ -20,9 +17,7 @@ namespace Reflection.Categories
 
         public object GetMethods(string categoryName)
         {
-            var assembly = Assembly.GetExecutingAssembly().GetName();
-            var concatName = assembly.Name + ".Categories." + categoryName;
-            var userSelection = Type.GetType(concatName);
+            var userSelection = GetCategoryType(categoryName);
 
             var methods = userSelection?.GetMethods();
 
@@ -31,14 +26,21 @@ namespace Reflection.Categories
 
         public object GetProperty(string categoryName, string propertyName)
         {
-            var assembly = Assembly.GetExecutingAssembly().GetName();
-            var concatName = assembly.Name + ".Categories." + categoryName;
-            var userSelection = Type.GetType(concatName);
+            var userSelection = GetCategoryType(categoryName);
             var propertyInfo = userSelection?.GetProperty(propertyName);
 
             var category = CreteCategory(categoryName);
 
             return propertyInfo?.GetValue(category, null);
+        }
+
+        private Type GetCategoryType(string categoryName)
+        {
+            var assembly = Assembly.GetExecutingAssembly().GetName();
+            var concatName = assembly.Name + ".Categories." + categoryName;
+            var userSelection = Type.GetType(concatName);
+
+            return userSelection;
         }
     }
 }
