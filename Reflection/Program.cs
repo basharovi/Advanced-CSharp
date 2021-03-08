@@ -21,15 +21,14 @@ namespace Reflection
                 Console.WriteLine("  {0} ", type.Name);
             }
 
-            var userInput =  Console.ReadLine();
+            Console.WriteLine();
+            var userInput = Console.ReadLine();
             
             var category = new CategoryFactory().CreteCategory(userInput);
             category?.PrintMe();
 
-            new CategoryFactory().GetMethods(userInput);
-
-            var manufacturedDate = new CategoryFactory().GetProperty(userInput, "ManufacturedDate");
-            Console.WriteLine("ManufacturedDate : {0}", manufacturedDate);
+            var warrentyExpirationDate = new CategoryFactory().GetField(userInput, "warrentyExpirationDate");
+            Console.WriteLine("Warrenty Expiration Date : {0}", warrentyExpirationDate);
         }
     }
 }

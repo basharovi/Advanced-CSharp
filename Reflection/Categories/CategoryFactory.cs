@@ -34,6 +34,16 @@ namespace Reflection.Categories
             return propertyInfo?.GetValue(category, null);
         }
 
+        public object GetField(string categoryName, string fieldName)
+        {
+            var userSelection = GetCategoryType(categoryName);
+            var fieldInfo = userSelection?.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
+
+            var category = CreteCategory(categoryName);
+
+            return fieldInfo?.GetValue(category);
+        }
+
         private Type GetCategoryType(string categoryName)
         {
             var assembly = Assembly.GetExecutingAssembly().GetName();
