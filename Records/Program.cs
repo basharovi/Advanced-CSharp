@@ -2,9 +2,14 @@
 
 namespace Records
 {
+
+    public record Student(string FirstName, string LastName, int Age) : Person(Age);
+
+    public record Person(int Age);
+    
+
     class Program
     {
-        record Student(string FirstName, string LastName, int Age);
 
         static void Main(string[] args)
         {
